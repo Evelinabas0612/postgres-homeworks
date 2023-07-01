@@ -1,12 +1,15 @@
 import json
-
+import os
 import psycopg2
 
 from config import config
+from utils import create_database, execute_sql_script, create_suppliers_table, get_suppliers_data, \
+    insert_suppliers_data, add_foreign_keys
 
 
 def main():
-    script_file = 'fill_db.sql'
+    #script_file = 'fill_db.sql'
+    script_file = 'script_file.sql'
     json_file = 'suppliers.json'
     db_name = 'my_new_db'
 
@@ -38,35 +41,6 @@ def main():
     finally:
         if conn is not None:
             conn.close()
-
-
-def create_database(params, db_name) -> None:
-    """Создает новую базу данных."""
-    pass
-
-def execute_sql_script(cur, script_file) -> None:
-    """Выполняет скрипт из файла для заполнения БД данными."""
-
-
-
-def create_suppliers_table(cur) -> None:
-    """Создает таблицу suppliers."""
-    pass
-
-
-def get_suppliers_data(json_file: str) -> list[dict]:
-    """Извлекает данные о поставщиках из JSON-файла и возвращает список словарей с соответствующей информацией."""
-    pass
-
-
-def insert_suppliers_data(cur, suppliers: list[dict]) -> None:
-    """Добавляет данные из suppliers в таблицу suppliers."""
-    pass
-
-
-def add_foreign_keys(cur, json_file) -> None:
-    """Добавляет foreign key со ссылкой на supplier_id в таблицу products."""
-    pass
 
 
 if __name__ == '__main__':
